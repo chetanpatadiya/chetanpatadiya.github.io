@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chetan Patadiya | Skills Tree</title>
+
+  <style>
+    :root {
+      --bg: #f7f9fc;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #64748b;
+      --primary: #0f172a;
+      --accent: #2563eb;
+      --line: #cbd5e1;
+      --green: #047857;
+      --orange: #c2410c;
+      --purple: #6d28d9;
+      --red: #b91c1c;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.55;
+    }
+
+    header {
+      background: linear-gradient(135deg, #0f172a, #1e3a8a);
+      color: white;
+      padding: 56px 24px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3rem);
+    }
+
+    header p {
+      max-width: 900px;
+      margin: 18px auto 0;
+      color: #dbeafe;
+      font-size: 1.05rem;
+    }
+
+    nav {
+      max-width: 1100px;
+      margin: 24px auto 0;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      padding: 8px 12px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    nav a:hover {
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    main {
+      max-width: 1160px;
+      margin: 0 auto;
+      padding: 36px 20px 72px;
+    }
+
+    .summary-card {
+      background: var(--card);
+      padding: 28px;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      margin-bottom: 28px;
+    }
+
+    .summary-card h2 {
+      margin-top: 0;
+      color: var(--primary);
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .legend span {
+      border: 1px solid #e2e8f0;
+      border-radius: 999px;
+      padding: 7px 11px;
+      background: #f8fafc;
+      color: #334155;
+      font-size: 0.88rem;
+    }
+
+    .tree {
+      background: var(--card);
+      border-radius: 18px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+      overflow-x: auto;
+    }
+
+    .tree ul {
+      padding-top: 20px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      gap: 22px;
+      margin: 0;
+    }
+
+    .tree li {
+      list-style-type: none;
+      text-align: center;
+      position: relative;
+      padding: 20px 8px 0 8px;
+      min-width: 220px;
+    }
+
+    .tree li::before,
+    .tree li::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 50%;
+      border-top: 2px solid var(--line);
+      width: 50%;
+      height: 20px;
+    }
+
+    .tree li::after {
+      right: auto;
+      left: 50%;
+      border-left: 2px solid var(--line);
+    }
+
+    .tree li:only-child::before,
+    .tree li:only-child::after {
+      display: none;
+    }
+
+    .tree li:only-child {
+      padding-top: 0;
+    }
+
+    .tree li:first-child::before,
+    .tree li:last-child::after {
+      border: 0 none;
+    }
+
+    .tree li:last-child::before {
+      border-right: 2px solid var(--line);
+      border-radius: 0 8px 0 0;
+    }
+
+    .tree li:first-child::after {
+      border-radius: 8px 0 0 0;
+    }
+
+    .tree ul ul::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 50%;
+      border-left: 2px solid var(--line);
+      width: 0;
+      height: 20px;
+    }
+
+    .node {
+      display: inline-block;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      padding: 14px;
+      width: 100%;
+      text-align: left;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.06);
+      transition: transform 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .node:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.12);
+    }
+
+    .node h3 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+      color: var(--primary);
+    }
+
+    .node p {
+      margin: 0;
+      font-size: 0.88rem;
+      color: var(--muted);
+    }
+
+    .root {
+      background: #0f172a;
+      color: white;
+      border-color: #0f172a;
+    }
+
+    .root h3,
+    .root p {
+      color: white;
+    }
+
+    .validation {
+      border-top: 5px solid var(--accent);
+    }
+
+    .packaging {
+      border-top: 5px solid var(--green);
+    }
+
+    .simulation {
+      border-top: 5px solid var(--purple);
+    }
+
+    .regulatory {
+      border-top: 5px solid var(--orange);
+    }
+
+    .leadership {
+      border-top: 5px solid var(--red);
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .detail-card {
+      background: white;
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: var(--shadow);
+      border: 1px solid #e2e8f0;
+    }
+
+    .detail-card h2 {
+      margin-top: 0;
+      color: var(--primary);
+      font-size: 1.15rem;
+    }
+
+    .detail-card ul {
+      margin-bottom: 0;
+      padding-left: 20px;
+    }
+
+    .detail-card li {
+      margin-bottom: 7px;
+    }
+
+    .footer {
+      margin-top: 38px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .footer a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    @media (max-width: 900px) {
+      .tree ul {
+        display: block;
+        padding-left: 0;
+      }
+
+      .tree li {
+        min-width: 100%;
+        padding-top: 14px;
+      }
+
+      .tree li::before,
+      .tree li::after,
+      .tree ul ul::before {
+        display: none;
+      }
+
+      .node {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Skills Tree</h1>
+    <p>
+      A structured map of my expertise in regulated medical device packaging,
+      sterile barrier validation, process optimization, simulation, and
+      AI-enabled decision frameworks for healthcare manufacturing.
+    </p>
+
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="#tree">Skills Tree</a>
+      <a href="#details">Detailed Capabilities</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="summary-card">
+      <h2>Core Positioning</h2>
+      <p>
+        My technical focus is <strong>Regulated Packaging Intelligence</strong>:
+        the integration of sterile barrier packaging, process validation,
+        statistical methods, simulation, risk management, and predictive modeling
+        to improve medical device packaging development and manufacturing
+        decision-making.
+      </p>
+
+      <div class="legend">
+        <span>Packaging Systems</span>
+        <span>Validation & Statistics</span>
+        <span>Simulation & Digital Twin</span>
+        <span>Regulatory Translation</span>
+        <span>Technical Leadership</span>
+      </div>
+    </section>
+
+    <section class="tree" id="tree" aria-label="Chetan Patadiya skills tree">
+      <ul>
+        <li>
+          <div class="node root">
+            <h3>Regulated Packaging Intelligence</h3>
+            <p>
+              Medical device packaging systems, validation strategy,
+              statistical rigor, and AI-ready technical frameworks.
+            </p>
+          </div>
+
+          <ul>
+            <li>
+              <div class="node packaging">
+                <h3>Sterile Barrier Packaging Systems</h3>
+                <p>
+                  Packaging architecture, material interfaces, seal design,
+                  package integrity, aging, and distribution robustness.
+                </p>
+              </div>
+
+              <ul>
+                <li>
+                  <div class="node">
+                    <h3>Seal System Engineering</h3>
+                    <p>
+                      Heat sealing parameters, seal strength, visual defects,
+                      process windows, and multi-sealer equivalence.
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <div class="node">
+                    <h3>Package Integrity</h3>
+                    <p>
+                      Dye penetration, visual inspection, leak pathways,
+                      sterile barrier risk, and defect classification.
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <div class="node validation">
+                <h3>Validation & Statistical Methods</h3>
+                <p>
+                  DOE, TOST equivalence, sampling rationale, process capability,
+                  accelerated aging, and validation evidence strategy.
+                </p>
+              </div>
+
+              <ul>
+                <li>
+                  <div class="node">
+                    <h3>DOE & Optimization</h3>
+                    <p>
+                      Parameter screening, response surface thinking,
+                      worst-case selection, and robust process design.
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <div class="node">
+                    <h3>Equivalence & Risk-Based Validation</h3>
+                    <p>
+                      TOST, acceptance criteria, matrixed validation, and
+                      lifecycle qualification logic.
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <div class="node simulation">
+                <h3>Simulation, AI & Digital Twin</h3>
+                <p>
+                  FEA, surrogate modeling, synthetic data, model credibility,
+                  and regulated manufacturing decision support.
+                </p>
+              </div>
+
+              <ul>
+                <li>
+                  <div class="node">
+                    <h3>Predictive Modeling</h3>
+                    <p>
+                      Regression, random forest concepts, sensitivity analysis,
+                      model validation, and technical interpretation.
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <div class="node">
+                    <h3>System Identification</h3>
+                    <p>
+                      Mapping process inputs to seal strength, package defects,
+                      aging response, and manufacturing performance.
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <div class="node regulatory">
+                <h3>Regulatory & Standards Translation</h3>
+                <p>
+                  Converting technical evidence into inspection-ready,
+                  standards-aligned, and audit-defensible documentation.
+                </p>
+              </div>
+
+              <ul>
+                <li>
+                  <div class="node">
+                    <h3>Standards-Based Evidence</h3>
+                    <p>
+                      ISO 11607, ISO 14971, ASTM packaging test methods,
+                      distribution testing, and aging rationale.
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <div class="node">
+                    <h3>Quality System Integration</h3>
+                    <p>
+                      Design control, risk management, validation traceability,
+                      and regulated change assessment.
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </li>
+
+            <li>
+              <div class="node leadership">
+                <h3>Technical Leadership & Field Contribution</h3>
+                <p>
+                  Cross-functional leadership, mentoring, peer review,
+                  conference contributions, and standards engagement.
+                </p>
+              </div>
+
+              <ul>
+                <li>
+                  <div class="node">
+                    <h3>Technical Communication</h3>
+                    <p>
+                      Translating complex packaging, validation, and AI topics
+                      into practical frameworks for regulated industries.
+                    </p>
+                  </div>
+                </li>
+                <li>
+                  <div class="node">
+                    <h3>Strategic Framework Development</h3>
+                    <p>
+                      Building reusable methods for NPI packaging,
+                      process validation, and lifecycle risk management.
+                    </p>
+                  </div>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+
+    <section class="details-grid" id="details">
+      <article class="detail-card">
+        <h2>Packaging Systems</h2>
+        <ul>
+          <li>Sterile barrier system design</li>
+          <li>Heat seal process development</li>
+          <li>Seal strength and visual inspection</li>
+          <li>Distribution and aging strategy</li>
+          <li>Material and interface behavior</li>
+        </ul>
+      </article>
+
+      <article class="detail-card">
+        <h2>Validation Methods</h2>
+        <ul>
+          <li>DOE and response mapping</li>
+          <li>TOST equivalence logic</li>
+          <li>Matrixed validation strategy</li>
+          <li>Worst-case and bracketing rationale</li>
+          <li>Sampling and acceptance criteria</li>
+        </ul>
+      </article>
+
+      <article class="detail-card">
+        <h2>AI / ML / Simulation</h2>
+        <ul>
+          <li>FEA-informed packaging decisions</li>
+          <li>Predictive seal-strength modeling</li>
+          <li>Synthetic data frameworks</li>
+          <li>Digital twin credibility concepts</li>
+          <li>Risk-tiered model deployment</li>
+        </ul>
+      </article>
+
+      <article class="detail-card">
+        <h2>Regulatory Translation</h2>
+        <ul>
+          <li>ISO 11607 evidence structure</li>
+          <li>ISO 14971 risk linkage</li>
+          <li>ASTM test-method alignment</li>
+          <li>Design control traceability</li>
+          <li>Audit-ready validation narratives</li>
+        </ul>
+      </article>
+    </section>
+
+    <p class="footer">
+      Built for <a href="https://chetanpatadiya.github.io/">chetanpatadiya.github.io</a>
+    </p>
+  </main>
+</body>
+</html>
