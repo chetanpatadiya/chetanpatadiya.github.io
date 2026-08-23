@@ -1,6 +1,6 @@
 # Chetan Patadiya
 
-Medical device packaging leader focused on sterile barrier systems, process validation, statistical rigor, simulation, and AI-enabled decision frameworks for regulated manufacturing.
+Engineering leader in **Regulated Medical Product Engineering**, working across medical-device development, packaging systems, validation, statistics, simulation, and AI-enabled engineering methods, with deep specialization in medical-device, pharmaceutical, and combination-product packaging.
 
 ## Website
 
@@ -9,6 +9,8 @@ Medical device packaging leader focused on sterile barrier systems, process vali
 
 ## Technical Focus
 
+- Medical-device engineering and regulated product development
+- Medical-device, pharmaceutical, and combination-product packaging
 - Sterile barrier packaging systems
 - Process validation and statistical methods
 - DOE, TOST equivalence, and risk-based validation
