@@ -402,6 +402,7 @@
 <!-- END PHARMACEUTICAL STABILITY EXPLORER -->
 
 
+
 <!-- ASEPTIC OPENING MOTION EXPLORER -->
 <div class="project-card">
   <div class="project-card-image">
@@ -410,84 +411,102 @@
          viewBox="0 0 120 120"
          aria-hidden="true">
 
-      <!-- Analysis dashboard -->
-      <rect x="15" y="18" width="90" height="84"
-            rx="5" stroke="currentColor"
+      <!-- Video analysis frame -->
+      <rect x="15" y="20" width="90" height="80"
+            rx="3" stroke="currentColor"
             stroke-width="2" fill="none"/>
 
-      <!-- Dashboard header -->
-      <line x1="15" y1="34" x2="105" y2="34"
+      <!-- Header divider -->
+      <line x1="15" y1="36" x2="105" y2="36"
             stroke="currentColor" stroke-width="2"/>
 
-      <!-- Sterile pouch -->
-      <rect x="42" y="43" width="36" height="25"
+      <!-- Sterile pouch outline -->
+      <rect x="41" y="49" width="38" height="24"
             rx="2" stroke="currentColor"
             stroke-width="1.5" fill="none"/>
 
-      <!-- Peel opening -->
-      <path d="M42 43 L53 36 L66 36 L78 43"
+      <!-- Pouch peel opening -->
+      <path d="M41 49 L51 42 L66 42 L79 49"
             stroke="currentColor"
             stroke-width="1.5" fill="none"/>
 
-      <!-- Left hand landmark trajectory -->
-      <polyline points="22,53 29,48 36,42 42,39"
+      <!-- Left hand motion trajectory -->
+      <polyline points="22,62 29,56 35,49 41,44"
                 stroke="currentColor"
                 stroke-width="1.5" fill="none"/>
-      <circle cx="22" cy="53" r="2" fill="currentColor"/>
-      <circle cx="29" cy="48" r="2" fill="currentColor"/>
-      <circle cx="36" cy="42" r="2" fill="currentColor"/>
 
-      <!-- Right hand landmark trajectory -->
-      <polyline points="98,53 91,48 84,42 78,39"
+      <circle cx="22" cy="62" r="2"
+              fill="currentColor"/>
+      <circle cx="29" cy="56" r="2"
+              fill="currentColor"/>
+      <circle cx="35" cy="49" r="2"
+              fill="currentColor"/>
+
+      <!-- Right hand motion trajectory -->
+      <polyline points="98,62 91,56 85,49 79,44"
                 stroke="currentColor"
                 stroke-width="1.5" fill="none"/>
-      <circle cx="98" cy="53" r="2" fill="currentColor"/>
-      <circle cx="91" cy="48" r="2" fill="currentColor"/>
-      <circle cx="84" cy="42" r="2" fill="currentColor"/>
 
-      <!-- Motion analysis chart -->
-      <path d="M28 76 V93 H94"
+      <circle cx="98" cy="62" r="2"
+              fill="currentColor"/>
+      <circle cx="91" cy="56" r="2"
+              fill="currentColor"/>
+      <circle cx="85" cy="49" r="2"
+              fill="currentColor"/>
+
+      <!-- Motion chart axes -->
+      <path d="M27 78 V94 H96"
             stroke="currentColor"
             stroke-width="1.5" fill="none"/>
 
-      <polyline points="31,89 42,85 51,80 60,80 69,74 81,70 91,68"
-                stroke="currentColor"
-                stroke-width="2" fill="none"/>
+      <!-- Hand separation trend -->
+      <polyline
+        points="30,91 40,87 50,82 60,82 70,77 81,73 93,70"
+        stroke="currentColor"
+        stroke-width="2" fill="none"/>
 
     </svg>
   </div>
 
   <div class="project-card-content">
-    <h3>Aseptic Opening Motion Explorer</h3>
-
-    <p>
-      A browser-based engineering proof of concept using
-      Google MediaPipe to track hand movements during
-      sterile-barrier package opening. Explore hand
-      trajectories, opening duration, motion interruptions,
-      and annotated video events, with CSV exports
-      for further analysis.
+    <p class="project-category">
+      Human Factors &amp; Usability Engineering
     </p>
 
-    <div class="project-tags">
-      <span class="tag">Human Factors</span>
-      <span class="tag">Computer Vision</span>
-      <span class="tag">MediaPipe</span>
-      <span class="tag">POC v0.1</span>
-      <span class="tag">In Development</span>
+    <h3 class="project-card-title">
+      Aseptic Opening Motion Explorer
+    </h3>
+
+    <div class="project-card-status">
+      <span class="badge badge-neutral">
+        In Development v0.1
+      </span>
     </div>
 
-    <div class="project-links">
+    <p class="project-card-description">
+      A browser-based computer-vision proof of concept
+      using Google MediaPipe to analyze hand movements
+      during sterile barrier package opening.
+      Tracks hand landmarks, opening duration, movement
+      trajectories, and manually annotated interruptions,
+      with CSV exports for engineering analysis.
+      Intended for exploratory human-factors research;
+      outputs do not establish aseptic presentation
+      performance or regulatory validation.
+    </p>
+
+    <div class="project-card-footer">
       <a href="https://chetanpatadiya.github.io/aseptic-opening-motion-explorer/"
+         class="button button-primary button-small"
          target="_blank"
-         rel="noopener noreferrer"
-         class="btn btn-primary">
-        Explore Tool &rarr;
+         rel="noopener noreferrer">
+        Open Tool
       </a>
     </div>
   </div>
 </div>
 <!-- END ASEPTIC OPENING MOTION EXPLORER -->
+
         
 
 <!-- AGGRESSIVE FACTOR TEST EXPLORER -->
